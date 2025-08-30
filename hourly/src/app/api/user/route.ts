@@ -7,7 +7,7 @@ export async function GET(request: Request){
     const { searchParams } = new URL(request.url)
     const userEmail = searchParams.get("email")
 
-    const data = await prisma.user1.findUnique({
+    const data = await prisma.user.findUnique({
         where: {email: userEmail }
     })
     return new Response(JSON.stringify(data),{
@@ -33,7 +33,7 @@ export async function POST(request: Request){
             )
         }
 
-        const newUser = await prisma.user1.create({
+        const newUser = await prisma.user.create({
             data:{
             name : name || null,
             email,

@@ -5,7 +5,7 @@ async function GetUserData(user){
 
     user = await response.json()
 
-    console.log(user.name +"123")
+    return user
  }
 
 

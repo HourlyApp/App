@@ -5,6 +5,8 @@ import { PrismaClient } from "@prisma/client";
 import { useState } from "react";
 import GetUserData from "./GetUser";
 import CreateUser from "./CreateUser";
+import CreateLog from "./CreateLog";
+import GetLogs from "./ViewLogs";
 
 const prisma = new PrismaClient()
 
@@ -31,21 +33,22 @@ const { data: session } = useSession()
         const output = await response.json()
         
           const userList = []
+          
           output.forEach(element => {
             userList.push(element.email)
           });
               
-          
-          
-            if (userList.includes(user.email)){
-                GetUserData(user)
-                }
 
-              else{
+        
+            if (userList.includes(user.email)){
+                const data = await GetUserData(user)
+                GetLogs(data.id)
+              }
+
+            else{
                 CreateUser(user)
               }
       }
-   
    
       allUsers()
   }

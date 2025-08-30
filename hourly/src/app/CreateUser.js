@@ -16,7 +16,7 @@ async function CreateUser(user){
 
     user = await response.json()
 
-    console.log(user)
+    return user
  }
 
 
