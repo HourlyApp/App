@@ -1,29 +1,38 @@
-import { PrismaClient } from '@prisma/client';
+"use client"
+import { useSession, signIn, signOut } from "next-auth/react"
+import { useEffect } from "react";
 
-const prisma = new PrismaClient();
 
-async function getUsers() {
 
-  const newUser = await prisma.user1.create({
-    data:{
-    name: "Favour",
-    email:"Fvour@email.com",
-    totalHours : 3
-    }
+export default function Navbar() {
 
-  })
+useEffect(()=>{
+const func = async () =>{
+ const response= await fetch('/api/user')
+    
 
-  const userList = await prisma.user1.findMany()
+    const output = await response
+    console.log(output.text())}
 
-  return userList;
-}
+  func()
+},[])
 
-export default async function Home() {
-  const user = await getUsers();
-  console.log(user)
+    
+
+  const { data: session } = useSession()
+  if (session) {
+    return (
+      <>
+        {console.log(session.user)}
+        Signed in as {session.user.email} <br />
+        <button onClick={() => signOut({callbackUrl: "/"})}>Sign out</button>
+      </>
+    )
+  }
   return (
-    <div> 
-      Hello
-    </div>
-  );
+    <>
+      Not signed in <br />
+      <button onClick={() => signIn("google")}>Sign in</button>
+    </>
+  )
 }
