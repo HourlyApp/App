@@ -13,8 +13,10 @@ model User {
   email   String   @unique
   name    String?
   totalHours Int
-  logs    Log[]  
+  logs    Log[]
+  groupId String?
 }
+
 
 model Log {
   logId  String    @id @default(uuid())
@@ -23,4 +25,11 @@ model Log {
   Description String?
   userId String 
   author User  @relation(fields: [userId], references: [id])
+}
+
+model Group{
+  groupId  String    @id @default(uuid())
+  createdAt   DateTime? @default(now()) @db.Timestamptz(6)
+  groupName String
+  groupTotal Int
 }

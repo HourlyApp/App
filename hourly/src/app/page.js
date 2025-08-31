@@ -3,11 +3,13 @@ import { useSession, signIn, signOut } from "next-auth/react"
 import { useEffect } from "react";
 import { PrismaClient } from "@prisma/client";
 import { useState } from "react";
-import GetUserData from "./GetUser";
-import CreateUser from "./CreateUser";
-import CreateLog from "./CreateLog";
-import GetLogs from "./ViewLogs";
-import UpdateUser from "./UpDate";
+import GetUserData from "../User/GetUser";
+import CreateUser from "../User/CreateUser";
+import CreateLog from "../Log/CreateLog";
+import GetLogs from "../Log/ViewLogs";
+import UpdateUser from "../User/UpDateHours";
+import CreateGroup from "../Group/CreateGroup";
+import UpdateUserGroup from "../User/AddToGroup";
 
 const prisma = new PrismaClient()
 
@@ -40,10 +42,15 @@ const { data: session } = useSession()  //Get info of logged in user
           });
               
 
-        
-            if (userEmailList.includes(user.email)){  // if user is in th db
+          const GroupData = {
+            name: "Group1",
+            groupTotal: 4
+          }
+          
+            if (userEmailList.includes(user.email)){  // if user is in the db
                 const data = await GetUserData(user)
                 console.log(data)
+                UpdateUserGroup(data,"b691ad77-92ce-44a9-929c-45d5eadf1718")
               }
 
             else{

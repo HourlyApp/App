@@ -6,7 +6,7 @@ export async function POST(request: Request){
 
     try{
         const body = await request.json()
-        const {name, email,totalHours,uid} = body
+        const {name, email,totalHours,uid,groupId} = body
     
     
         if (!email){
@@ -24,9 +24,9 @@ export async function POST(request: Request){
             data:{
             name,
             email,
-            totalHours:{
-                increment:
-            }            },
+            totalHours,
+            groupId,
+            }
 
         })
 
@@ -40,7 +40,7 @@ export async function POST(request: Request){
     catch(error){
         console.log(error)
 
-        return new Response(JSON.stringify({error:"Error Updating users"}),
+        return new Response(JSON.stringify({error:"Error Updating u"}),
         {status:500}
         )
     }

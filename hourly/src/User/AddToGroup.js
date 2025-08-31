@@ -1,6 +1,6 @@
 "use client"
 
-async function UpdateUser(user ,hours){
+async function UpdateUserGroup(user,gid){
     const response = await fetch(`api/Update`,{
 
         method: "POST",
@@ -10,8 +10,9 @@ async function UpdateUser(user ,hours){
         body: JSON.stringify({
             name: user.name,
             email: user.email,
-            totalHours: hours + user.totalHours,
-            uid: user.id
+            totalHours: user.totalHours,
+            uid: user.id,
+            groupId:gid
         })
     })
 
@@ -22,4 +23,4 @@ async function UpdateUser(user ,hours){
  }
 
 
- export default UpdateUser
+ export default UpdateUserGroup
