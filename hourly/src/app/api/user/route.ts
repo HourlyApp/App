@@ -10,6 +10,8 @@ export async function GET(request: Request){
     const data = await prisma.user.findUnique({
         where: {email: userEmail },
         include:{
+            Goals:true,
+            
             Memberships: {
                 include: {
                     group: true

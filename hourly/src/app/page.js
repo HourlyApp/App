@@ -11,6 +11,7 @@ import UpdateUser from "../User/UpDateHours";
 import CreateGroup from "../Group/CreateGroup";
 import UpdateUserGroup from "../User/AddToGroup";
 import FindGroupUsers from "../User/FindUsersByGroup";
+import CreateGoal from "../Goals/CreateGoal";
 
 const prisma = new PrismaClient()
 
@@ -42,10 +43,17 @@ const { data: session } = useSession()  //Get info of logged in user
             userEmailList.push(element.email)
           });
               
-          
+            const goal = {
+              
+                Date : new Date("2025-09-03T10:30:00"),
+                Hours : 3,
+                Name : "python",
+              }
             if (userEmailList.includes(user.email)){  // if user is in the db
                 const data = await GetUserData(user)
-                console.log(data.Memberships)
+                console.log(data.Goals)
+                //CreateGoal(goal,data)
+
               }
 
             else{

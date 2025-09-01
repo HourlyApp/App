@@ -51,7 +51,7 @@ model GroupMember{
 model UserGoal{
   id String    @id @default(uuid())
   createdAt    DateTime? @default(now())  @db.Date 
-  endDate      DateTime
+  endDate      DateTime @default(now())
   Hours        Int
   Name         String?
   userId       String?
