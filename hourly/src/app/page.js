@@ -10,6 +10,7 @@ import GetLogs from "../Log/ViewLogs";
 import UpdateUser from "../User/UpDateHours";
 import CreateGroup from "../Group/CreateGroup";
 import UpdateUserGroup from "../User/AddToGroup";
+import FindGroupUsers from "../User/FindUsersByGroup";
 
 const prisma = new PrismaClient()
 
@@ -49,8 +50,11 @@ const { data: session } = useSession()  //Get info of logged in user
           
             if (userEmailList.includes(user.email)){  // if user is in the db
                 const data = await GetUserData(user)
-                console.log(data)
-                UpdateUserGroup(data,"b691ad77-92ce-44a9-929c-45d5eadf1718")
+                //console.log(data)
+                
+                const out = await FindGroupUsers(data)
+                console.log(out)
+
               }
 
             else{

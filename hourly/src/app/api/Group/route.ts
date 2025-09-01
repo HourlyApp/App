@@ -3,6 +3,28 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient()
 
 
+
+export async function GET(request: Request){
+
+    const { searchParams } = new URL(request.url)
+    const gid = searchParams.get("gid")
+
+    const Members = await prisma.user.findMany({
+        where: {groupId: gid}
+    })
+
+        return new Response(JSON.stringify(Members),{
+
+        status:200,
+        headers: {'Content-Type': 'application/json'}
+    })
+    
+   
+}
+
+
+
+
 export async function POST(request: Request){
 
     try{

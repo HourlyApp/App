@@ -19,7 +19,7 @@ async function UpdateUserGroup(user,gid){
     user = await response.json()
 
     console.log(user)
-    //return user
+    return user
  }
 
 
