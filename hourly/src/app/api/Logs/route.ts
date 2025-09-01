@@ -8,7 +8,7 @@ export async function GET(request: Request){
     const uid = searchParams.get("id")
 
     const data = await prisma.log.findMany({
-        where: {userId: uid}
+        where: {id: uid}
     })
     return new Response(JSON.stringify(data),{
 

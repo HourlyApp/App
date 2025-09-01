@@ -14,12 +14,14 @@ model User {
   name    String?
   totalHours Int
   logs    Log[]
-  groupId String?
+  Goals   UserGoal[]
+
+  Memberships GroupMember[]
 }
 
 
 model Log {
-  logId  String    @id @default(uuid())
+  id  String    @id @default(uuid())
   createdAt   DateTime? @default(now()) @db.Timestamptz(6)
   Hours Int
   Description String?
@@ -28,8 +30,30 @@ model Log {
 }
 
 model Group{
-  groupId  String    @id @default(uuid())
+  id  String    @id @default(uuid())
   createdAt   DateTime? @default(now()) @db.Timestamptz(6)
   groupName String
   groupTotal Int
+  Members GroupMember[]
+
+}
+
+
+model GroupMember{
+  id  String    @id @default(uuid())
+  userId String
+  groupId String
+
+  user User @relation(fields: [userId], references: [id])
+  group Group @relation(fields: [groupId], references: [id])
+}
+
+model UserGoal{
+  id String    @id @default(uuid())
+  createdAt    DateTime? @default(now()) @db.Timestamptz(6)
+  endDate      DateTime
+  Hours        Int
+  Name         String?
+  userId       String?
+  creator      User? @relation(fields: [userId], references: [id]) 
 }

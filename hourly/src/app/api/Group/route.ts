@@ -10,7 +10,7 @@ export async function GET(request: Request){
     const gid = searchParams.get("gid")
 
     const Members = await prisma.user.findMany({
-        where: {groupId: gid}
+        where: {id: gid}
     })
 
         return new Response(JSON.stringify(Members),{
