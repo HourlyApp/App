@@ -12,7 +12,6 @@ async function UpdateUserGroup(user,gid){
             email: user.email,
             totalHours: user.totalHours,
             uid: user.id,
-            groupId:gid
         })
     })
 

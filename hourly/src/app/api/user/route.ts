@@ -8,7 +8,14 @@ export async function GET(request: Request){
     const userEmail = searchParams.get("email")
 
     const data = await prisma.user.findUnique({
-        where: {email: userEmail }
+        where: {email: userEmail },
+        include:{
+            Memberships: {
+                include: {
+                    group: true
+                }
+            }     
+        }
     })
     return new Response(JSON.stringify(data),{
 
@@ -17,6 +24,9 @@ export async function GET(request: Request){
     })
 
 }
+
+
+
 
 
 export async function POST(request: Request){

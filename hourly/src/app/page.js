@@ -42,19 +42,10 @@ const { data: session } = useSession()  //Get info of logged in user
             userEmailList.push(element.email)
           });
               
-
-          const GroupData = {
-            name: "Group1",
-            groupTotal: 4
-          }
           
             if (userEmailList.includes(user.email)){  // if user is in the db
                 const data = await GetUserData(user)
-                //console.log(data)
-                
-                const out = await FindGroupUsers(data)
-                console.log(out)
-
+                console.log(data.Memberships)
               }
 
             else{

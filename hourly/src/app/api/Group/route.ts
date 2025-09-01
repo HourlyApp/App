@@ -9,8 +9,15 @@ export async function GET(request: Request){
     const { searchParams } = new URL(request.url)
     const gid = searchParams.get("gid")
 
-    const Members = await prisma.user.findMany({
-        where: {id: gid}
+    const Members = await prisma.group.findUnique({
+        where: {id: gid},
+       include: {
+            members: {
+                include: {
+                    user: true // This fetches the actual User record for each membership
+        }
+      }
+    }
     })
 
         return new Response(JSON.stringify(Members),{

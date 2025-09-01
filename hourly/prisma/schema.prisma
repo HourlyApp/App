@@ -22,7 +22,7 @@ model User {
 
 model Log {
   id  String    @id @default(uuid())
-  createdAt   DateTime? @default(now()) @db.Timestamptz(6)
+  createdAt   DateTime? @default(now()) @db.Date 
   Hours Int
   Description String?
   userId String 
@@ -31,7 +31,7 @@ model Log {
 
 model Group{
   id  String    @id @default(uuid())
-  createdAt   DateTime? @default(now()) @db.Timestamptz(6)
+  createdAt   DateTime? @default(now())   @db.Date 
   groupName String
   groupTotal Int
   Members GroupMember[]
@@ -50,7 +50,7 @@ model GroupMember{
 
 model UserGoal{
   id String    @id @default(uuid())
-  createdAt    DateTime? @default(now()) @db.Timestamptz(6)
+  createdAt    DateTime? @default(now())  @db.Date 
   endDate      DateTime
   Hours        Int
   Name         String?
