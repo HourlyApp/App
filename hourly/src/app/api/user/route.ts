@@ -14,7 +14,11 @@ export async function GET(request: Request){
             
             Memberships: {
                 include: {
-                    group: true
+                    group: {
+                        include:{
+                            GroupGoals : true
+                        }
+                    }
                 }
             }     
         }

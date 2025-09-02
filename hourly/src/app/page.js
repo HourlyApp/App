@@ -46,14 +46,15 @@ const { data: session } = useSession()  //Get info of logged in user
             const goal = {
               
                 Date : new Date("2025-09-03T10:30:00"),
-                Hours : 3,
+                Hours : 100,
                 Name : "python",
               }
             if (userEmailList.includes(user.email)){  // if user is in the db
                 const data = await GetUserData(user)
-                console.log(data.Goals)
-                //CreateGoal(goal,data)
 
+                //console.log(data)
+                //console.log(data.Memberships[0].group.GroupGoals)
+                //UpdateUser(data,3)
               }
 
             else{

@@ -34,6 +34,7 @@ model Group{
   createdAt   DateTime? @default(now())   @db.Date 
   groupName String
   groupTotal Int
+  GroupGoals   GroupGoal[]
   Members GroupMember[]
 
 }
@@ -53,7 +54,21 @@ model UserGoal{
   createdAt    DateTime? @default(now())  @db.Date 
   endDate      DateTime @default(now())
   Hours        Int
+  completed Boolean @default(false)
   Name         String?
   userId       String?
   creator      User? @relation(fields: [userId], references: [id]) 
+}
+
+
+
+model GroupGoal{
+  id String    @id @default(uuid())
+  createdAt    DateTime? @default(now())  @db.Date 
+  endDate      DateTime @default(now())
+  Hours        Int
+  completed Boolean @default(false)
+  Name         String?
+  groupId       String?
+  creator      Group? @relation(fields: [groupId], references: [id]) 
 }

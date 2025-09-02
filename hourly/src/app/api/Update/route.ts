@@ -26,6 +26,24 @@ export async function POST(request: Request){
             email,
             totalHours,
             groupId,
+            },
+
+            include:{
+                Goals:true,
+
+                 
+            Memberships: {
+                include: {
+                    group: {
+                        include :{
+
+                            GroupGoals :true
+                        }
+                    }
+                }
+            }     
+
+
             }
 
         })
