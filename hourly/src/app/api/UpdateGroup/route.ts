@@ -22,8 +22,10 @@ export async function POST(request: Request){
         include : {
             GroupGoals:true
         }
-
     })
+
+
+    
 
     return new Response(JSON.stringify(res),
         {status:201}
