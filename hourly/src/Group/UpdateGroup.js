@@ -1,6 +1,4 @@
 
-import UpdateGoals from "../Goals/UpdateGoals"
-
 async function UpdateGroup(group ,hours){
     const response = await fetch(`api/UpdateGroup`,{
 

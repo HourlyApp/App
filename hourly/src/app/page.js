@@ -12,6 +12,7 @@ import CreateGroup from "../Group/CreateGroup";
 import UpdateUserGroup from "../User/AddToGroup";
 import FindGroupUsers from "../User/FindUsersByGroup";
 import CreateGoal from "../Goals/CreateGoal";
+import CreateGroupGoal from "../GroupGoals/CreateGroupGoal";
 
 const prisma = new PrismaClient()
 
@@ -52,7 +53,10 @@ const { data: session } = useSession()  //Get info of logged in user
             if (userEmailList.includes(user.email)){  // if user is in the db
                 const data = await GetUserData(user)
 
-                //console.log(data)
+               // console.log(data)
+
+                //const groupGoal =  await CreateGroupGoal(goal,data.Memberships[0].group)
+                //console.log(groupGoal)
                 //console.log(data.Memberships[0].group.GroupGoals)
                 //UpdateUser(data,3)
               }
