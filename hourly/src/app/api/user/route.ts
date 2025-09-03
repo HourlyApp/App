@@ -11,6 +11,8 @@ export async function GET(request: Request){
         where: {email: userEmail },
         include:{
             Goals:true,
+            logs: true,
+
             
             Memberships: {
                 include: {

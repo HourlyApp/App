@@ -45,3 +45,32 @@ export async function POST(request: Request){
     
 
 }
+
+
+export async function DELETE(request){
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("id")
+
+    try{
+        await prisma.log.delete({
+            where : {
+                id: id
+            }
+        })
+
+
+          return new Response(JSON.stringify({finished:'delete complete'}),{
+            status:200,
+            headers: {"Content-Type": "application/json"}
+        })
+
+    }
+
+    catch(error){
+        console.log(error)
+        
+        return new Response(JSON.stringify( { error: 'Internal server error - delete ' }),
+        { status: 500 })
+}
+
+}
