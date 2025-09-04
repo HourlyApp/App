@@ -2,15 +2,19 @@
 import UpdateGroup from "../Group/UpdateGroup";
 
 async function LeaveGroup(user ,group){
-   //console.log(user.id, group.Members[1].userId)
-   console.log(user.id)
 
-   const newGroup = group.Members.filter((element) =>{
-       return element.userId != user.id
+    console.log(user.id,group.id)
+    const response = await fetch(`api/LeaveGroup?uid=${user.id}&gid=${group.id}`,{
+
+        method: "DELETE",
+        headers:{
+                  "Content-Type": "application/json",
+        },
     })
 
-    console.log(newGroup)
- }
+    const data = await response.json()
 
+    console.log(data)
+    }
 
  export default LeaveGroup

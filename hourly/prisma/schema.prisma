@@ -27,6 +27,7 @@ model Log {
   Description String?
   userId String 
   author User  @relation(fields: [userId], references: [id])
+  Flags Flag[]
 }
 
 model Group{
@@ -71,4 +72,14 @@ model GroupGoal{
   Name         String?
   groupId       String?
   creator      Group? @relation(fields: [groupId], references: [id]) 
+}
+
+
+model Flag{
+  id String    @id @default(uuid())
+  createdAt    DateTime? @default(now())  @db.Date 
+  isFlagged    Boolean @default(false)
+  logId        String
+  Owner        Log? @relation(fields: [logId] ,references: [id])
+
 }

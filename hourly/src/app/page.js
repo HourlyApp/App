@@ -63,7 +63,9 @@ const { data: session } = useSession()  //Get info of logged in user
             if (userEmailList.includes(user.email)){  // if user is in the db
                 const data = await GetUserData(user)
 
-                LeaveGroup(data, data.Memberships[0].group)
+                //console.log(data, data.Memberships[0].group)
+                //LeaveGroup(data, data.Memberships[0].group)
+
                 //DeleteGroupGoal(data.Memberships[0].group.GroupGoals[0])
                // DeleteGoal(data.Goals[0])
                 //DeleteLog(data.logs[0])
