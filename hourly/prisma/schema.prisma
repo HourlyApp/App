@@ -83,3 +83,4 @@ model Flag{
   Owner        Log? @relation(fields: [logId] ,references: [id])
 
 }
+

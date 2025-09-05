@@ -17,7 +17,7 @@ import DeleteLog from "../Log/DeleteLog";
 import DeleteGoal from "../Goals/DeleteGoal";
 import DeleteGroupGoal from "../GroupGoals/DeleteGroupGoal";
 import LeaveGroup from "../User/LeaveGroup";
-
+import AddToGroup from "../User/AddToGroup";
 const prisma = new PrismaClient()
 
 
@@ -60,19 +60,30 @@ const { data: session } = useSession()  //Get info of logged in user
               hours: 4,
               desc: "idek"
             }
+
+            const Group = {
+              Name: "shuddup",
+              id:"group1",
+            }
             if (userEmailList.includes(user.email)){  // if user is in the db
                 const data = await GetUserData(user)
 
+               
+                console.log(data)
+                
                 //console.log(data, data.Memberships[0].group)
                 //LeaveGroup(data, data.Memberships[0].group)
 
                 //DeleteGroupGoal(data.Memberships[0].group.GroupGoals[0])
-               // DeleteGoal(data.Goals[0])
+                 //DeleteGoal(data.Goals[0])
                 //DeleteLog(data.logs[0])
                 //const groupGoal =  await CreateGroupGoal(goal,data.Memberships[0].group)
                 //console.log(groupGoal)
                 //console.log(data.Memberships[0].group.GroupGoals)
                 //UpdateUser(data,3)
+                //await CreateGoal(exampleuser,goal)
+                //UpdateUser(data,data.Goals[0].id,4)
+                await AddToGroup(data,Group)
               }
 
             else{

@@ -1,6 +1,6 @@
 "use client"
 
-async function CreateLog(userID, log){
+async function CreateLog(user, log){
     const response = await fetch(`api/Log`,{
 
         method: "POST",
@@ -10,7 +10,7 @@ async function CreateLog(userID, log){
         body: JSON.stringify({
             hours: log.hours,
             desc: log.desc,
-            userId: userID
+            userId: user.id
         })
     })
 

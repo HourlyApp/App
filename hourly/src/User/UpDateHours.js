@@ -1,7 +1,7 @@
 
 import UpdateGroup from "../Group/UpdateGroup";
 
-async function UpdateUser(user ,hours){
+async function UpdateUser(user,GoalId,hours){
     const response = await fetch(`api/Update`,{
 
         method: "POST",
@@ -20,10 +20,7 @@ async function UpdateUser(user ,hours){
 
 
     const new_user = await response.json()
-
-    //console.log(new_user.Memberships)
-
-    //console.log(hours, "AS")
+    console.log(new_user.Goals)
 
     new_user.Memberships.forEach(element => {
         UpdateGroup(element.group, hours)
@@ -33,7 +30,9 @@ async function UpdateUser(user ,hours){
 
     new_user.Goals.forEach(element => {
         if (element.completed == false){ 
-        element.Hours = element.Hours - hours
+            if (element.id == GoalId){
+                element.Hours = element.Hours - hours
+            }
         }
         if (element.Hours <= 0){
             element.completed = true

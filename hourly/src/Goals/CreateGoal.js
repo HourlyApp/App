@@ -1,6 +1,6 @@
 "use client"
 
-async function CreateGoal(Goal,user){
+async function CreateGoal(user,Goal){
     const response = await fetch(`api/Goal`,{
 
         method: "POST",

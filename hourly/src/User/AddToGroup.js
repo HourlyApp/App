@@ -1,25 +1,24 @@
 "use client"
 
-async function UpdateUserGroup(user,gid){
-    const response = await fetch(`api/Update`,{
+async function AddToGroup(user,group){
+    console.log("reached")
+     const response = await fetch(`api/AddToGroup`,{
 
         method: "POST",
         headers:{
                   "Content-Type": "application/json",
         },
+
         body: JSON.stringify({
-            name: user.name,
-            email: user.email,
-            totalHours: user.totalHours,
-            uid: user.id,
+          userId: user.id,
+          groupId: group.id  
         })
     })
 
-    user = await response.json()
+    const data = await response.json()
 
-    console.log(user)
-    return user
+    return data
  }
 
 
- export default UpdateUserGroup
+ export default AddToGroup

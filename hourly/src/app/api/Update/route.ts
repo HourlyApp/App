@@ -25,7 +25,6 @@ export async function POST(request: Request){
             name,
             email,
             totalHours,
-            groupId,
             },
 
             include:{
