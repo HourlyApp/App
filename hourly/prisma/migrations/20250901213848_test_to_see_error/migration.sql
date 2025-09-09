@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "public"."UserGoal" ALTER COLUMN "endDate" SET DEFAULT CURRENT_TIMESTAMP;

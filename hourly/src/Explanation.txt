@@ -1,0 +1,50 @@
+GetUserData(user) 
+
+input:usersession from googleauth
+output:Gives you user's data in database
+
+
+
+updateUser()
+
+user
+Goal Id: to know which Goal to update
+Hours to be updated
+
+
+CreateUser()
+
+input:usersession from googleauth
+
+
+CreateLog()
+
+user id 
+Log arguments
+
+
+
+DeleteLog()
+
+Log info/args
+
+ViewLog()
+Log id
+
+
+allGroups()
+
+
+
+CreateGroup()
+groupdata
+
+
+UpdateGroup()
+increases the group hour total
+
+
+CreateGoal()
+
+
+

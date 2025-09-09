@@ -1,0 +1,86 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id      String      @id @default(uuid())
+  email   String   @unique
+  name    String?
+  totalHours Int
+  logs    Log[]
+  Goals   UserGoal[]
+
+  Memberships GroupMember[]
+}
+
+
+model Log {
+  id  String    @id @default(uuid())
+  createdAt   DateTime? @default(now()) @db.Date 
+  Hours Int
+  Description String?
+  userId String 
+  author User  @relation(fields: [userId], references: [id])
+  Flags Flag[]
+}
+
+model Group{
+  id  String    @id @default(uuid())
+  createdAt   DateTime? @default(now())   @db.Date 
+  groupName String
+  groupTotal Int
+  GroupGoals   GroupGoal[]
+  Members GroupMember[]
+
+}
+
+
+model GroupMember{
+  id  String    @id @default(uuid())
+  userId String
+  groupId String
+
+  user User @relation(fields: [userId], references: [id])
+  group Group @relation(fields: [groupId], references: [id])
+}
+
+model UserGoal{
+  id String    @id @default(uuid())
+  createdAt    DateTime? @default(now())  @db.Date 
+  endDate      DateTime @default(now())
+  Hours        Int
+  completed Boolean @default(false)
+  Name         String?
+  userId       String?
+  creator      User? @relation(fields: [userId], references: [id]) 
+}
+
+
+
+model GroupGoal{
+  id String    @id @default(uuid())
+  createdAt    DateTime? @default(now())  @db.Date 
+  endDate      DateTime @default(now())
+  Hours        Int
+  completed Boolean @default(false)
+  Name         String?
+  groupId       String?
+  creator      Group? @relation(fields: [groupId], references: [id]) 
+}
+
+
+model Flag{
+  id String    @id @default(uuid())
+  createdAt    DateTime? @default(now())  @db.Date 
+  isFlagged    Boolean @default(false)
+  logId        String
+  Owner        Log? @relation(fields: [logId] ,references: [id])
+
+}
+
