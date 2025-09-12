@@ -73,7 +73,7 @@ export default function Home() {
 
             <div className="Home text-black text-center pt-3 font-bold ml-20 text-2xl w-30 h-15 rounded-3xl  bg-white">
               {isSigned? 
-              (<button onClick={() =>  {signOut({callbackUrl: "/"}),setSigned(false)}}>signOut</button>)
+              (<button onClick={() =>  {signOut({callbackUrl: "/login"}),setSigned(false)}}>signOut</button>)
             :
                (<button onClick={ () => {signIn("google"),setSigned(true)}} > Sign In</button>)
               }
